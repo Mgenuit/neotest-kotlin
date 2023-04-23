@@ -3,6 +3,52 @@ local logger = require("neotest.logging")
 
 local M = {}
 
+local function get_test_nodes_data(tree)
+	local test_nodes = {}
+	for _, node in tree:iter_nodes() do
+		if node:data().type == "test" then
+			table.insert(test_nodes, node)
+		end
+	end
+
+	return test_nodes
+end
+
+function M.results(spec, _, tree)
+	local output_file = spec.context.results_path
+
+	local parsed_data = M.parse_report(output_file)
+
+	local test_results = parsed_data.testsuite.testcase
+
+	-- No test results. Something went wrong. Check for runtime error
+	if not test_results then
+		-- return result_utils.get_runtime_error(spec.context.id)
+	end
+
+	logger.info("neotest-dotnet: Found " .. #test_results .. " test results when parsing TRX file: " .. output_file)
+
+	logger.debug("neotest-dotnet: TRX Results Output: ")
+	logger.debug(test_results)
+
+	local test_nodes = get_test_nodes_data(tree)
+
+	logger.debug("neotest-dotnet: Test Nodes: ")
+	logger.debug(test_nodes)
+
+	local intermediate_results = M.create_intermediate_results(test_results)
+
+	logger.debug("neotest-dotnet: Intermediate Results: ")
+	logger.debug(intermediate_results)
+
+	local neotest_results = M.convert_intermediate_results(intermediate_results, test_nodes)
+
+	logger.debug("neotest-dotnet: Neotest Results after conversion of Intermediate Results: ")
+	logger.debug(neotest_results)
+
+	return neotest_results
+end
+
 function M.get_outcome(result_value)
 	if result_value.skipped then
 		return { result = "skipped", message = "Test was skipped", stack = nil }

@@ -21,6 +21,11 @@ class GradleDemoApplicationTests {
         assert(false)
 	}
 
+	@Test
+	fun simpleFaildTest() {
+        assert(true)
+	}
+
     fun thisIsNoTest(){
     }
 
