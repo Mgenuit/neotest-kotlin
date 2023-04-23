@@ -12,9 +12,9 @@ describe("Builder mvn", function()
 		local builder = require("neotest-kotlin.builders.gradle_builder")
 		local tree = Tree.from_list({
 			{
-				id = "/home/mgenuit/Code/neotest-kotlin/tests/projects/gradle/gradle-demo/src/test/kotlin/io/genuit/gradledemo/GradleDemoApplicationTests.kt::GradleDemoApplicationTests::simpleFailedTest",
+				id = vim.fn.getcwd().."/tests/projects/gradle/gradle-demo/src/test/kotlin/io/genuit/gradledemo/GradleDemoApplicationTests.kt::GradleDemoApplicationTests::simpleFailedTest",
 				name = "contextLoads2",
-				path = "/home/mgenuit/Code/neotest-kotlin/tests/projects/gradle/gradle-demo/src/test/kotlin/io/genuit/gradledemo/GradleDemoApplicationTests.kt",
+				path = vim.fn.getcwd().."/tests/projects/gradle/gradle-demo/src/test/kotlin/io/genuit/gradledemo/GradleDemoApplicationTests.kt",
 				range = { 14, 1, 17, 2 },
 				type = "test",
 			},
