@@ -1,0 +1,28 @@
+name: Merge Request
+
+on: 
+  pull_request:
+    branches:
+      - dev
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        neovim_version: [ 'v0.8.2', 'v0.9.0', 'nightly']
+    steps:
+      - uses: actions/checkout@v3
+
+      - run: date +%F > todays-date
+
+      - name: setup neovim
+        uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: ${{ matrix.neovim_version }}
+
+      - name: run tests
+        run: make test-ci
