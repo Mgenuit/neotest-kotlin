@@ -65,7 +65,7 @@ function KotlinNeotest.Adapter.is_test_file(file_path)
     if vim.endswith(file_path, ".kt") then
         local content = lib.files.read(file_path)
         -- Combine all attribute list arrays into one
-        local all_attributes = tquery.test_markers
+        local all_attributes = tquery.testMarkers
 
         for _, test_attribute in ipairs(all_attributes) do
             if string.find(content, "%@" .. test_attribute) then
