@@ -1,5 +1,4 @@
 local async = require("nio").tests
-require("neotest-kotlin.debug")
 
 describe("surefire xml report helpers", function()
 	assert:set_parameter("TableFormatLevel", 5)

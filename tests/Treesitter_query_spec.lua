@@ -1,5 +1,4 @@
 local async = require("nio").tests
-require("neotest-kotlin.debug")
 
 describe("When checking if file is test file", function()
     require("neotest").setup({

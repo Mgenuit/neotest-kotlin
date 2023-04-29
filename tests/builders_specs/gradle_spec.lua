@@ -9,7 +9,7 @@ describe("Builder mvn", function()
 	})
 
 	async.it("Should return nil", function()
-		local builder = require("neotest-kotlin.builders.gradle_builder")
+		local builder = require("neotest-kotlin.builders")
 		local tree = Tree.from_list({
 			{
 				id = vim.fn.getcwd().."/tests/projects/gradle/gradle-demo/src/test/kotlin/io/genuit/gradledemo/GradleDemoApplicationTests.kt::GradleDemoApplicationTests::simpleFailedTest",
@@ -22,7 +22,7 @@ describe("Builder mvn", function()
 			return pos.id
 		end)
 
-		local result = builder.build_spec(tree)
+		local result = builder.set_builder("gradle").build_spec(tree)
 
 		local regex = "gradle test %-%-tests GradleDemoApplicationTests.simpleFailedTest"
 

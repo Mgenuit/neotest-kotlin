@@ -1,6 +1,6 @@
 local M = {}
 
-M.attributes = {
+M.testMarkers = {
     "Test",
 }
 

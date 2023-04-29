@@ -29,12 +29,11 @@ function M.get_package(file)
     for _ in pairs(pathTable) do
         size1 = size1 + 1
     end
-    for i = cutof, 1, -1 do
+    for _ = cutof, 1, -1 do
         table.remove(pathTable, 1)
     end
 
     return table.concat(pathTable, ".")
 end
-
 
 return M

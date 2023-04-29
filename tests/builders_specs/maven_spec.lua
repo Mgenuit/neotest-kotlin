@@ -8,7 +8,7 @@ describe("Builder mvn", function()
         },
     })
     async.it("Should return nil", function()
-        local builder = require("neotest-kotlin.builders.maven_builder")
+        local builder = require("neotest-kotlin.builders")
         local tree = Tree.from_list({
             {
                 id = vim.fn.getcwd()
@@ -25,7 +25,7 @@ describe("Builder mvn", function()
             return pos.id
         end)
 
-        local result = builder.build_spec(tree)
+		local result = builder.set_builder("maven").build_spec(tree)
 
         local regex = "mvn test %-l .+.trx %-f .+ %-Dtest%=MavenDemoApplicationTests%#contextLoads2"
 
