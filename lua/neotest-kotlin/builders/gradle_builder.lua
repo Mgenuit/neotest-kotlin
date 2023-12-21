@@ -3,7 +3,7 @@ local builders = require("neotest-kotlin.builders.util")
 local util = require("neotest-kotlin.util")
 
 local GradleBuilder = {
-    rootIndicator = "build.gradle.kts",
+    rootIndicators = {"build.gradle.kts","build.gradle"},
 }
 
 function GradleBuilder.create_single_spec(position, proj_root, filter_arg)
@@ -27,7 +27,7 @@ function GradleBuilder.create_single_spec(position, proj_root, filter_arg)
     return {
         command = command_string,
         context = {
-            results_path = proj_root .. "/build/test-results/test" .. test_ref.report,
+            results_path = proj_root .. "/build/test-results/test/" .. test_ref.report,
             file = position.path,
             id = position.id,
         },

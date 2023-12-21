@@ -4,7 +4,7 @@ local builders = require("neotest-kotlin.builders.util")
 local util = require("neotest-kotlin.util")
 
 local M = {
-    rootIndicator = "pom.xml",
+    rootIndicators = {"pom.xml"},
 }
 
 function M.create_single_spec(position, proj_root, filter_arg)

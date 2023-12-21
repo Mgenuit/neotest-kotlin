@@ -20,7 +20,14 @@ function M.build_spec(tree, specs)
     end
 
     local position = tree:data()
-    local proj_root = lib.files.match_root_pattern(M._Builder.rootIndicator)(position.path)
+    local proj_root
+
+    for _, dir in ipairs(M._Builder.rootIndicators) do
+        if proj_root == nil then
+            proj_root = lib.files.match_root_pattern(dir)(position.path)
+        end
+    end
+
     specs = specs or {}
 
     -- Adapted from https://github.com/nvim-neotest/neotest/blob/392808a91d6ee28d27cbfb93c9fd9781759b5d00/lua/neotest/lib/file/init.lua#L341

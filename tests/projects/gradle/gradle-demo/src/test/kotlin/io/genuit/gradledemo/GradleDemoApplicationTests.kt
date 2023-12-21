@@ -29,5 +29,4 @@ class GradleDemoApplicationTests {
     fun thisIsNoTest(){
     }
 
-
 }
